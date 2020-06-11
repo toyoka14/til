@@ -20,7 +20,9 @@ generateはコントローラー以外も生成できる
 ```
 get 'static_pages/home'
 ```
-`/static_pages/home`をstatic_pagesコントローラーのhomeアクションと結びつける
+- `/static_pages/home`をstatic_pagesコントローラーのhomeアクションと結びつける
+
+- 新しいルーティングはconfig/routes.rbで定義する
 
 ## app/controllers
 - コントローラーに定義されているアクションは、rubyのメソッド
@@ -62,3 +64,14 @@ end
 rails test
 ```
 でテストを実行する
+
+- 常に自動テストを使って新機能開発をすすめることで、自身を持ってリファクタリングできるようになり、回帰バグも素早くキャッチできるようになる
+- テスト駆動開発では「RED, GREEN, REFACTOR」サイクルを繰り返す
+
+### メモ
+
+## ERB(埋め込みRuby: Embedded RuBy)
+- HTMLにrailsのコードを埋め込める
+
+## app/views/layouts/application.html.erb
+アプリケーションのページの共通部分をテンプレートに置くことでコードの重複を解決することができる
