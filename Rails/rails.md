@@ -75,3 +75,70 @@ rails test
 
 ## app/views/layouts/application.html.erb
 アプリケーションのページの共通部分をテンプレートに置くことでコードの重複を解決することができる
+
+## Rails風Ruby
+### 文字列(string)
+ダブルクォートかシングルクォートで囲むことで作成できる。
+
+文字列は`+`で結合できる
+```Ruby
+"foo" + "bar"    # 文字列の結合
+#=> "foobar"
+```
+
+ダブルクォートでは、式展開ができる
+```Ruby
+first_name = "Michael"
+#=> "Michael"
+last_name = "Hartl"
+#=> "Hartl"
+first_name + " " + last_name    # 苗字と名前の間に空白を入れた結合
+#=> "Michael Hartl"
+"#{first_name} #{last_name}"    # 式展開を使って結合 (上と全く同じ)
+#=> "Michael Hartl"
+```
+
+シングルクォートは式展開ができない。
+特殊文字を通常の文字として扱うため。
+
+特殊文字は`\`でエスケープできる。
+
+シングルクォートは、エスケープが大量にある場合に便利
+
+#### Stringのメソッド
+- "foobar".empty?  
+文字列がからの場合true
+- 
+
+### オブジェクト
+Rubyでは全てオブジェクト
+
+### 条件文
+```Ruby
+if s.nil?
+  "The variable is nil"
+elsif s.empty?
+  "The string is empty"
+elsif s.include?("foo")
+  "The string includes 'foo'"
+end
+```
+
+論理演算子
+- `&&`(and)
+- `||`(or)
+- `!`(not)
+
+### 後続if
+
+後続するifでtrueの場合だけ実行される式を書くことができる。
+
+```Ruby
+string = "foobar"
+puts "The string '#{string}' is nonempty." unless string.empty?
+#The string 'foobar' is nonempty.
+```
+
+### コメント
+Rubyのコメントは、`#`(ハッシュ)から始まり、行の終わりまでがコメントとして扱われます。
+
