@@ -184,3 +184,84 @@ NoMethodError: undefined method `to_a' for 9:Fixnum
 => ["a", "b", "c", "d", "e"]
 ```
 
+## ブロック
+配列と範囲はいずれも、ブロックを伴う様々なメソッドに対して応答することができる。
+
+```
+(1..5).each { |i| puts 2 * i }
+#2
+#4
+#6
+#8
+#10
+#=> 1..5
+```
+
+- `{}`で囲まれている部分がブロック
+- `|`で囲んでいるのが変数名
+- `do`, `end`で囲んでもブロックを示せる
+- 複数行も記載できる
+- 慣習的に1行には`{}`を使い、長い1行や複数行の場合は`do end`をつかう
+
+
+### map
+mapメソッドは渡されたブロックを配列や範囲オブジェクトの各要素に対して適用し、その結果を返します。
+引数を省略した記法がある(symbol-to-proc)
+```
+>> %w[A B C].map { |char| char.downcase }
+=> ["a", "b", "c"]
+>> %w[A B C].map(&:downcase)
+=> ["a", "b", "c"]
+```
+
+## ハッシュとシンボル
+
+- 連想配列、JSON、インデックスとして整数以外が使える配列
+
+```
+>> user = {}                          # {}は空のハッシュ
+=> {}
+>> user["first_name"] = "Michael"     # キーが "first_name" で値が "Michael"
+=> "Michael"
+>> user["last_name"] = "Hartl"        # キーが "last_name" で値が "Hartl"
+=> "Hartl"
+>> user["first_name"]                 # 要素へのアクセスは配列の場合と似ている
+=> "Michael"
+>> user                               # ハッシュのリテラル表記
+=> {"last_name"=>"Hartl", "first_name"=>"Michael"}
+```
+
+- ハッシュロケットと呼ばれる`=>`記法でリテラルを表現できる
+```
+>> user = { "first_name" => "Michael", "last_name" => "Hartl" }
+=> {"last_name"=>"Hartl", "first_name"=>"Michael"}
+```
+
+- シンボルをキーにできる
+```
+>> h1 = { :name => "Michael Hartl", :email => "michael@example.com" }
+=> {:name=>"Michael Hartl", :email=>"michael@example.com"}
+>> h2 = { name: "Michael Hartl", email: "michael@example.com" }
+=> {:name=>"Michael Hartl", :email=>"michael@example.com"}
+>> h1 == h2
+=> true
+```
+
+- シンボルの場合は別の記法が使える。JSONぽいやつ  
+- `:name =>` == `name:`になる
+- コロンの位置が後ろになっただけなので、スペースを入れるとエラーになる
+- 
+```
+{ name: "Michael Hartl", email: "michael@example.com" }
+```
+
+- ハッシュのキーにハッシュが使える JSONの階層構造てきなやつ
+- ハッシュのeachメソッドを使うとkey, value2つの引数が渡される
+
+
+### シンボル
+`:name`がシンボル
+コロンが前に置かれたやつがシンボル
+
+文字列ではない
+すべての文字が使えるわけではない
