@@ -75,3 +75,28 @@ rails test
 
 ## app/views/layouts/application.html.erb
 アプリケーションのページの共通部分をテンプレートに置くことでコードの重複を解決することができる
+
+## 組み込みクラスの変更
+Railsでは、Webアプリケーションで空白にならないようにしたいケースが多いので、Objectクラスに`blank?`メソッドが用意されている。
+
+## アクセサリ
+
+```
+class User
+  attr_accessor :name, :email
+
+  def initialize(attributes = {})
+    @name  = attributes[:name]
+    @email = attributes[:email]
+  end
+
+  def formatted_email
+    "#{@name} <#{@email}>"
+  end
+end
+```
+
+- `attr_accessor :name, :email`でインスタンス変数を作成している。
+- アクセサーを定義すると、getter,setterが自動で作成される。
+- `@name`, `@email`でインスタンス変数にアクセスできる
+

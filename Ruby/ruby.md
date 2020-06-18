@@ -317,3 +317,22 @@ mapメソッドは渡されたブロックを配列や範囲オブジェクト�
 >> s.class.superclass.superclass.superclass
 => nil
 ```
+
+## 組み込みクラスの変更
+組み込みクラスに独自メソッドを追加できる
+
+```
+>> class String
+>>   # 文字列が回文であればtrueを返す
+>>   def palindrome?
+>>     self == self.reverse
+>>   end
+>> end
+=> :String
+>> "deified".palindrome?
+=> true
+```
+
+## initialize
+- Javaでいうコンストラクタ
+- newを事項すると自動的に呼び出される
