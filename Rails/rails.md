@@ -100,3 +100,56 @@ end
 - アクセサーを定義すると、getter,setterが自動で作成される。
 - `@name`, `@email`でインスタンス変数にアクセスできる
 
+
+## HTML
+### class, id
+単なるラベルで、CSSでスタイルを指定するときに便利
+
+idは一度しかつかえない
+
+### div
+一般的な表示領域をあわらす。要素を別々のパーツに分けるときに使われる。
+
+古いスタイルのHTMLは、divタグはサイトのほぼすべての領域に使われていたが、HTML5からはよく使われる領域ごとに細分化された。具体的には`header`,`nav`,`section`など
+
+### headerタグ
+ページの丈夫に来るべき要素を表す
+
+### nav
+ナビゲーションを表す
+
+### ul
+順不同リストタグ
+
+### li
+リストアイテムタグ、ulの内側に使う
+
+
+### Railsヘルパー
+#### link_to
+linkタグを挿入する。
+link_toの第一引数はリンクテキスト、第二引数はRUL、第三引数はオプションハッシュ
+
+URLのスタブに`#`ハッシュが一般的にしようされる
+
+#### image_to
+imageタグを挿入する
+
+app/assets/images/ディレクトリに格納された画像を挿入する。
+html変換されたコードでは、assets直下になっているがRailsが紐付けている。
+ファイル名が重ならないように、文字列が追加するがこれは画像を更新した場合に、ブラウザのキャッシュを意図的にヒットさせないようにするための仕組みになっている。
+
+### HTML shim 
+Internet ExplorerがHTML5のサポートが不完全なため、javascriptで補完する
+
+```HTML
+<!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+  </script>
+<![endif]-->
+```
+
+#### 条件付きコメント
+Internet Explorerで今回のような問題を回避するために、特別にサポートされている。
+これによりFirefox、Chrome、Safariなのど他のブラウザに影響を与えずに、スクリプトを実行できる。
+
