@@ -100,6 +100,33 @@ end
 - アクセサーを定義すると、getter,setterが自動で作成される。
 - `@name`, `@email`でインスタンス変数にアクセスできる
 
+## レイアウトのリンク
+5.3
+
+Railsではリンクの実装は
+```
+<%= link_to "About", about_path %>
+```
+名前付きルートを使用するのが慣例になっている
+
+
+ルートの定義
+```
+root 'static_pages#home'
+
+root_path -> '/'
+root_url  -> 'http://www.example.com/'
+```
+
+名前付きルート
+```
+get  '/help', to: 'static_pages#help'
+help_path -> '/help'
+help_url  -> 'http://www.example.com/help'
+```
+
+名前付きルート、ルートファイルで定義したルートを変数で利用できるようになる
+
 
 ## HTML
 ### class, id
