@@ -68,6 +68,31 @@ rails test
 - 常に自動テストを使って新機能開発をすすめることで、自身を持ってリファクタリングできるようになり、回帰バグも素早くキャッチできるようになる
 - テスト駆動開発では「RED, GREEN, REFACTOR」サイクルを繰り返す
 
+### assert_template
+正しいビューを表示しているか確認する
+```
+assert_template 'static_pages/home'
+```
+
+### assert_select
+```
+assert_select "a[href=?]", about_path
+```
+?を`about_path`に置換している。これにより次のようなHTMLがあるかどうかをチェックできる。
+
+```
+<a href="/about">...</a>
+```
+
+```
+assert_select "a[href=?]", root_path, count: 2
+```
+countをつけることで複数のリンクも調べることができる。
+
+`asser_select`にはいろいろなオプションがあるが、チュートリアルの作者の経験的に複雑なテストはこれで行わないほうが良いとのこと。
+今回のようなレイアウト内で頻繁に変更される用ををテストするグラウに抑えておくと良いらしい。
+
+
 ### メモ
 
 ## ERB(埋め込みRuby: Embedded RuBy)
