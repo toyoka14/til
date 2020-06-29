@@ -302,3 +302,28 @@ CSSの読み込みシーケンスの中で、`application.css`自身もその対
 - Railsはどのプリプロセッサを使うのかを、ファイル名の拡張子を使って判断する。
 - Saas用の`.scss`、CoffeeScript用の`.coffee`、Ruby(ERB)用の`.erb`
 - プリプロセッサエンジンは、つなげて実行することができる`foobar.js.erb.coffee`
+
+## Model
+- Railsでは、データモデルとして扱うデフォルトのデータ構造をモデル(Model)と呼ぶ
+- Railsでは、データを永続化するデフォルトの解決策として、データベースを使用する
+- データベースを使用するのに、SQLを意識する必要はなくActive Recordと呼ばれるライブラリがやってくれる
+- Railsでは、マイグレーション(Migration)という機能があり、データの定義をRubyで定義することができる
+
+### Migrate
+
+以下のコマンドで、モデルを作成し、マイグレートファイルも作成される
+```
+rails generate model User name:string email:string
+```
+
+マイグレートファイル自体は、データベースに与える変更を定義した`change`メソッドの集まり
+
+マイグレーションは次のようなコマンドをつかって実行することができる
+```
+rails db:migrate
+```
+
+マイグレートした変更は以下のコマンドでもとに戻すことができる
+```
+rails db:rollback
+```
