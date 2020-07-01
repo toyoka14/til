@@ -74,13 +74,14 @@ rails test
 - 常に自動テストを使って新機能開発をすすめることで、自身を持ってリファクタリングできるようになり、回帰バグも素早くキャッチできるようになる
 - テスト駆動開発では「RED, GREEN, REFACTOR」サイクルを繰り返す
 
-### assert_template
+### assertメソッド
+#### assert_template
 正しいビューを表示しているか確認する
 ```
 assert_template 'static_pages/home'
 ```
 
-### assert_select
+#### assert_select
 ```
 assert_select "a[href=?]", about_path
 ```
@@ -98,11 +99,13 @@ countをつけることで複数のリンクも調べることができる。
 `asser_select`にはいろいろなオプションがあるが、チュートリアルの作者の経験的に複雑なテストはこれで行わないほうが良いとのこと。
 今回のようなレイアウト内で頻繁に変更される用ををテストするグラウに抑えておくと良いらしい。
 
-### assert
+#### assert
 trueが返ると成功し、falseが返されると失敗する
 
+第二引数にエラーメッセージを渡すことができる。エラーメッセージを詳しく出力することでどこで失敗したかわかりやすくなる。
 
-### assert_not
+
+#### assert_not
 assetの反対
 
 
@@ -124,13 +127,22 @@ Active Recordでは検証(Validation)という機能で、制約を課すこと�
 
 - `presence : true`を引数に渡すことで存在を検証できる
 - `length: { maximum: 50 }`を渡すことで長さの上限を制限できる
+- `format: { with: /<regular expression>/ }`を渡すことで正規表現でフォーマットを検証することができる
+- `uniquness: true`, `uniquness: { case_sensitive: false }一意制約、case_sensitiveは大文字小文字を無視
+
+
 
 ### TestClass
 #### setupメソッド
 - 各テストが走る直前に実行される
 - インスタンス変数をsetupメソッド内で宣言しておけば、各テストで使用できるようになる。
-#### 
 
+## 正規表現
+メールアドレス検証正規表現
+`/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i`
+
+`/.../`の内側に正規表現を記載する。
+`/.../i`は大文字小文字を無視するオプション
 
 ## ERB(埋め込みRuby: Embedded RuBy)
 - HTMLにrailsのコードを埋め込める
