@@ -129,6 +129,7 @@ Active Recordでは検証(Validation)という機能で、制約を課すこと�
 - `length: { maximum: 50 }`を渡すことで長さの上限を制限できる
 - `format: { with: /<regular expression>/ }`を渡すことで正規表現でフォーマットを検証することができる
 - `uniquness: true`, `uniquness: { case_sensitive: false }一意制約、case_sensitiveは大文字小文字を無視
+- `length: { minimum: 6 }`を渡すことで最小を制限できる
 
 
 
@@ -363,6 +364,8 @@ CSSの読み込みシーケンスの中で、`application.css`自身もその対
 rails generate model User name:string email:string
 ```
 
+`to_users`のように末尾に`to_モデル名`とすると、テーブルにカラムを追加するマイグレーションがRailsによって自動的に生成される。
+
 
 ### 生成・削除
 #### new
@@ -425,3 +428,23 @@ rails db:migrate
 ```
 rails db:rollback
 ```
+
+## パスワード
+ハッシュ化されたパスワードを使う
+
+### has_secure_password
+セキュアなパスワードの実装は、`has_secure_password`というRailsのメソッドを呼び出すだけでほとんど終わる。
+モデルにこのメソッドを追加すると、次の機能が使えるようになる。
+- セキュアにハッシュ化したパスワードを、データベース内の`password_digest`という属性に保存できるようになる。
+- 2つのペアの仮想的な属性 (`password`と`password_confirmation`) が使えるようになる。また、存在性と値が一致するかどうかのバリデーションも追加される18 。
+- `authenticate`メソッドが使えるようになる (引数の文字列がパスワードと一致するとUserオブジェクトを、間違っているとfalseを返すメソッド) 。
+
+この機能を使えるようにするには、モデル内に`password_digest`という属性が含まれている必要がある。
+
+`has_secure_password`を使ってパスワードをハッシュ化するためには、`bcrypt`gemが必要になる。
+
+`password_digest`はハッシュ値のため、保存するときの認証は`password`,`password_confirmation`が使われている？
+
+### authenticate
+認証をする。パスワードがあるモデルで`authenticate`を呼ぶことで、引数で渡したパスワードが一致している場合にモデルを返し、一致していない場合はfalseを返す。
+※ここはRailsの動的型付け言語の特徴が出ている。静的型付け言語であればbooleanしか返せない。モデルを返す理由がわからない(メソッドチェーンするにも共通のメッソド以外はエラーになりそう)
