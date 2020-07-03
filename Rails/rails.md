@@ -30,6 +30,19 @@ get 'static_pages/home'
 
 - 新しいルーティングはconfig/routes.rbで定義する
 
+
+- `resources :users`は、ユーザーのURLを生成するため名前付きルートとともに、RESTfullなUsersリソースで必要となるすべてのアクションを利用できるようになる。
+
+| HTTPリクエスト |      URL      | アクション |    名前付きルート    |                    用途                     |
+| -------------- | ------------- | ---------- | -------------------- | ------------------------------------------- |
+| GET            | /users        | index      | users_path           | すべてのユーザーを一覧するページ            |
+| GET            | /users/1      | show       | user_path(user)      | 特定のユーザーを表示するページ              |
+| GET            | /users/new    | new        | new_user_path        | ユーザーを新規作成するページ (ユーザー登録) |
+| POST           | /users        | create     | users_path           | ユーザーを作成するアクション                |
+| GET            | /users/1/edit | edit       | edit_user_path(user) | id=1のユーザーを編集するページ              |
+| PATCH          | /users/1      | update     | user_path(user)      | ユーザーを更新するアクション                |
+| DELETE         | /users/1      | destroy    | user_path(user)      | ユーザーを削除するアクション                |
+
 ## app/controllers
 - コントローラーに定義されているアクションは、rubyのメソッド
 - コントローラーに定義されているアクションは内容が空でも、ApplicationControllerを継承していることで処理が行われる
@@ -303,6 +316,37 @@ $light-gray: #777;
 ### @import
 - `@import`を使用して読み込む
 
+### mixin
+CSSルールのグループをパッケージ化して複数の要素に適用できる。
+
+
+```
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+.
+.
+.
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+```
+
 
 ## CSS
 
@@ -448,3 +492,35 @@ rails db:rollback
 ### authenticate
 認証をする。パスワードがあるモデルで`authenticate`を呼ぶことで、引数で渡したパスワードが一致している場合にモデルを返し、一致していない場合はfalseを返す。
 ※ここはRailsの動的型付け言語の特徴が出ている。静的型付け言語であればbooleanしか返せない。モデルを返す理由がわからない(メソッドチェーンするにも共通のメッソド以外はエラーになりそう)
+
+## Railsの環境
+
+- test
+- development
+- production
+
+## デバッグ
+
+`debug`メソッドと`params`変数を使って、ERBでデバッグの情報を出力できる。
+
+```HTML
+<!DOCTYPE html>
+<html>
+  .
+  .
+  .
+  <body>
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+  </body>
+</html>
+```
+
+`if Rails.env.development?`を使うことで、`development`環境以外ではコードが実行されなくなる
+
+## params
+パラメータが格納されている。view, controllerで使用できる。
