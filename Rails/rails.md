@@ -524,3 +524,16 @@ rails db:rollback
 
 ## params
 パラメータが格納されている。view, controllerで使用できる。
+
+## debugger
+`byebug`gemによる、debuggerメソッド
+
+コントローラーに`debugger`メソッドを差し込むと、ブラウザからアクセスがあると、Railsサーバを立ち上げた端末でデバッグプロンプトが表示される。
+
+
+## Gravatar画像
+メールアドレスと画像を紐付けるサービス
+
+基本無料、qiitaでも使ってるっぽい
+
+
