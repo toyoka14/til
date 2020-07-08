@@ -1,4 +1,5 @@
-# form_for
+# form
+## form_for
 - Rails 5.1からは`form_with`が推奨されている。
 - ヘルパーメソッド
 
@@ -50,3 +51,6 @@ erb
          value="Create my account" />
 </form>
 ```
+
+- Railsはnameの値を使って、初期化したハッシュを(params変数経由)で構成する
+- `user[:email]`という値は、userハッシュの:emailキーと一致する
