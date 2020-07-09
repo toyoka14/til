@@ -54,3 +54,31 @@ erb
 
 - Railsはnameの値を使って、初期化したハッシュを(params変数経由)で構成する
 - `user[:email]`という値は、userハッシュの:emailキーと一致する
+
+
+## strong parameter
+- `@user = User.new(params[:user])`のように、`params`ハッシュ全体を初期化するのは極めて危険
+- Userにadminという管理者属性があったばあいに、ユーザが送信した`params`にadminが含まれていると、管理者権限が取得できてしまう。
+- curl等を使えばかんたんにパラメータを送信することができる
+
+- Rails4.0からは、Strong Parametersというテクニックを使うことが推奨されている
+- paramsのハッシュで、必須の属性を指定し、許可する属性を指定することで、許可した属性以外を使えば良い
+```
+params.require(:user).permit(:name, :email, :password, :password_confirmation)
+```
+- 慣習的にuser_paramsとういうprivate外部メソッドをしようする
+
+## error massage
+Rails tutorial 7.3.3
+https://railstutorial.jp/chapters/sign_up
+
+- データの登録に失敗した場合は、問題が生じたことをユーザにわかりやすく伝える必要がある
+- Railsは、エラーメッセージをモデルの検証時に自動的に生成してくれる
+- `model.errors.full_messages`でエラーメッセージにアクセスできる
+- ブラウザで表示するには、エラーメッセージをパーシャル*(partial)で出力する
+- `form-control`というCSSクラスも一緒に追加することで、Bootstrapがうまくエラーを取り扱ってくれる
+- Railsの習慣で、複数のビューで使われるパーシャルは専用のディレクトリ「`shared`」によく置かれる
+
+
+- Railsは、無効な内容の送信によってもとのページに戻されると、CSSクラス`field_with_errors`をもったdivタグでエラー箇所を自動的に囲む
+- @extendで、Bootstrapの`.has-error`を適用する
