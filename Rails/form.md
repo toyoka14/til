@@ -82,3 +82,19 @@ https://railstutorial.jp/chapters/sign_up
 
 - Railsは、無効な内容の送信によってもとのページに戻されると、CSSクラス`field_with_errors`をもったdivタグでエラー箇所を自動的に囲む
 - @extendで、Bootstrapの`.has-error`を適用する
+
+
+## redirect_to
+```
+redirect_to @user
+redirect_to user_usl(@user)
+```
+- リダイレクトを行う
+- フォームのPOSTにたいする応答で使用すると、応答がリダイレクト先のページになる
+
+## flash
+- Railsでは、表示したいメッセージがある場合に、flashという特殊な変数を使用する
+- flashはハッシュのように扱う
+- 適用するCSSクラスをメッセージの種類によって変更するように、`alert-<%= message_type %>`を使用する
+- flashは`success`, `info`, `warnig`, `danger`を持っている
+- Bootstrap CSSは上記の4つのスタイルを定義している
