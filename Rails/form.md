@@ -52,6 +52,9 @@ erb
 </form>
 ```
 
+- Modelでなくても良い
+- form_forの第一引数に任意のシンボルを渡し、第二引数にPOSTするurlを渡すことで任意のハッシュが送信できる
+
 - Railsはnameの値を使って、初期化したハッシュを(params変数経由)で構成する
 - `user[:email]`という値は、userハッシュの:emailキーと一致する
 
