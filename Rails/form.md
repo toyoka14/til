@@ -101,3 +101,5 @@ redirect_to user_usl(@user)
 - 適用するCSSクラスをメッセージの種類によって変更するように、`alert-<%= message_type %>`を使用する
 - flashは`success`, `info`, `warnig`, `danger`を持っている
 - Bootstrap CSSは上記の4つのスタイルを定義している
+- flashはリクエストしたときに消えるが、`render`メソッドで強制的に再レンダリングしてもリクエストとみなされないため消えない。
+- `flash.now`はリクエストが発生したときに消える。(renderで再レンダリングしたときも消える)
