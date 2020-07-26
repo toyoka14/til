@@ -9,3 +9,7 @@ https://railstutorial.jp/chapters/basic_login?version=5.1
 ```
 
 - Railsでは[cookies](https://ja.wikipedia.org/wiki/HTTP_cookie)を使ってセッションを一般的に実装する
+
+## session メソッド
+- sessionメソッドを使用しすると、自動で一時cookiesが生成される
+
