@@ -564,3 +564,5 @@ rails db:rollback
 
 基本無料、qiitaでも使ってるっぽい
 
+## Fixnum拡張
+- RailsはFixnumを拡張して、time、キロバイトなどのヘルパーを追加している
