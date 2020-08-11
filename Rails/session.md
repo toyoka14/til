@@ -46,3 +46,10 @@ https://railstutorial.jp/chapters/basic_login?version=5.1
 
 ## SecureRandom#urlsafe_base64
 - A–Z、a–z、0–9、"-"、"_"のいずれかの文字 (64種類) からなる長さ22のランダムな文字列を返します (64種類なのでbase64と呼ばれています)
+
+## test
+- postメソッドでログインできる paramsにpassword等を入れて
+- コントローラーの単体テストでは、`sesseion[:user__id]`にuser_idを入れることでログインできる
+- 統合テストでは、直接`sessions`を取り扱えないので、POSTメソッドで代用する
+- 統合テストでは、remember_token属性にアクセスできないが、`assigns`を使用することでインスタンス変数にアクセスできるようになる
+- `assigns`は`@user`というインスタンス変数が定義されていれば、`assigns(:user)`と書くことでインスタンス変数にアクセスできる

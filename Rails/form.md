@@ -103,3 +103,27 @@ redirect_to user_usl(@user)
 - Bootstrap CSSは上記の4つのスタイルを定義している
 - flashはリクエストしたときに消えるが、`render`メソッドで強制的に再レンダリングしてもリクエストとみなされないため消えない。
 - `flash.now`はリクエストが発生したときに消える。(renderで再レンダリングしたときも消える)
+
+## check box
+- 他のラベル、テキストフィールド、パスワードフィールド、送信ボタンと同様にヘルパーメソッドで作成できる
+- checkboxが正常に動作するためには、次のようにラベルの内側に配置する必要がある
+```
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :remember_me, class: "checkbox inline" do %>
+        <%= f.check_box :remember_me %>
+        <span>Remember me on this computer</span>
+      <% end %>
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+```
+- ONのときに`1`、OFFのときに`0`になる
+
+
