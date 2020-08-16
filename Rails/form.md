@@ -126,4 +126,5 @@ redirect_to user_usl(@user)
 ```
 - ONのときに`1`、OFFのときに`0`になる
 
-
+## PATCH
+- POSTとPATCHを`form_for(@user)`のコードは、`new_record?`で存在しているか確認し出し分けている

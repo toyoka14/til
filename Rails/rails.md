@@ -569,3 +569,8 @@ rails db:rollback
 
 ## Fixnum拡張
 - RailsはFixnumを拡張して、time、キロバイトなどのヘルパーを追加している
+
+## aタグ
+- リンク
+- `target="_blank"`で別タグで開けるが、遷移先でwindowオブジェクトを扱えてしまう
+- `rel`属性に`nooopener`を設定することで対応できる
