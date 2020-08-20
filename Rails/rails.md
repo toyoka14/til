@@ -574,3 +574,8 @@ rails db:rollback
 - リンク
 - `target="_blank"`で別タグで開けるが、遷移先でwindowオブジェクトを扱えてしまう
 - `rel`属性に`nooopener`を設定することで対応できる
+
+## before_action
+- beforeフィルター
+- controllerのアクションを実行する前に、実行されるフィルター
+- before_action内で、リダイレクトやレンダリングが行われるとアクションは実行されない
