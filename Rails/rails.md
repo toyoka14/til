@@ -579,3 +579,4 @@ rails db:rollback
 - beforeフィルター
 - controllerのアクションを実行する前に、実行されるフィルター
 - before_action内で、リダイレクトやレンダリングが行われるとアクションは実行されない
+- `redirect`文を呼び出しても、returnやメソッド内の最終行が呼び出されない限り、リダイレクトは発生しない
