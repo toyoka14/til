@@ -492,6 +492,29 @@ idで検索する
 特定の属性のみを更新する。検証を回避する効果がある。
 
 
+### 関連付け
+- belongs_to, has_manyなどでモデルを関連付けることによって、`user.micropost.create`のように紐付いているモデルを通して、関連づいているモデルを作成することができる。
+
+例)
+| メソッド | 用途 |
+| --- | --- |
+| micropost.user | Micropostに紐付いたUserオブジェクトを返す |
+| user.microposts | Userのマイクロポストの集合をかえす |
+| user.microposts.create(arg) | userに紐付いたマイクロポストを作成する |
+| user.microposts.create!(arg) | userに紐付いたマイクロポストを作成する (失敗時に例外を発生) |
+| user.microposts.build(arg) | userに紐付いた新しいMicropostオブジェクトを返す |
+| user.microposts.find_by(id: 1) | userに紐付いていて、idが1であるマイクロポストを検索する |
+
+#### belongs_to
+- `rails generate model Micropost content:text user:references`生成時にreferencesを使用することで、1対1の関係を表せる
+- 1対1の関係を表す`belongs_to`のコードも追加される
+- 自動的にインデックスと外部キー参照付きのカラムが追加され、関連付けする下準備をしてくれる
+
+#### has_many
+- modelsに`mas_many :micropost`のようにコードを追加することで、1対多の関係をあわらすことができる
+
+
+
 ## Migrate
 
 以下のコマンドで、モデルを作成し、マイグレートファイルも作成される
