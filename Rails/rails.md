@@ -448,6 +448,10 @@ rails generate model User name:string email:string
 
 - boolean型の属性をモデルに追加すると、`admin`を追加したら`admin?`という論理オブジェクトを返すメソッドが自動的に追加される
 
+## default_scope
+- ラムダ式で指定された、ブロックを評価する。
+- 指定されたSQLの条件やOrderをすべてのクエリにつける
+
 
 ### 生成・削除
 #### new
@@ -513,6 +517,9 @@ idで検索する
 #### has_many
 - modelsに`mas_many :micropost`のようにコードを追加することで、1対多の関係をあわらすことができる
 
+#### Dependent: destroy
+- 関連付けられたデータも一緒に削除する
+- `has_many`等のメソッドにオプションとして渡すことで実装できる
 
 
 ## Migrate
