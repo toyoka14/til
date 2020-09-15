@@ -80,6 +80,10 @@ get 'static_pages/home'
 - fixtureファイルでは埋め込みRubyが使用でき、ループで大量のテストユーザーを作成することができる
 - ログイン操作などもテストできる
 
+#### fixture
+- インテグレーションテスト用に記載されているデータをDBに登録できる
+- `user: michael`と記載することで、関連付けられたデータも作成することができる。
+
 ### test/controllers
 rails generate controllerで生成される
 
@@ -630,4 +634,5 @@ rails db:rollback
 - `assigns(:user)`のように引数にインスタンス変数名の文字列orシンボルを渡す
 
 
-
+## time_ago_in_words
+- 「3分前に投稿」といった文字列を出力するメソッド
