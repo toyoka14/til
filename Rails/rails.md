@@ -638,6 +638,11 @@ rails db:rollback
 ## time_ago_in_words
 - 「3分前に投稿」といった文字列を出力するメソッド
 
+## sql 「?」
+- SQLで指定されている?の場所に変数を展開する
+- 一部のSQLの非互換性まで解消してくれる
+
+
 ## メモ
 - dockerでbundleインストールするときは、グローバルにインストールしても他に影響はない
 - dockerでbundleインストール時におかしくなった場合は、プロジェクト内の.bundle/configとコンテナ内の/usr/local/bundle/configを確認する。
