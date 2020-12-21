@@ -1,0 +1,7 @@
+# AWS Budgets
+https://aws.amazon.com/jp/aws-cost-management/aws-budgets/
+
+予算を設定し、閾値を超えたときにアラートを発信するサービス
+
+- 設定ミス等でやばくなる前に検知できるはず
+- 2020/12/22に$100の予算を設定
